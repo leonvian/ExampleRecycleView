@@ -29,7 +29,7 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
 
     @Override
     public CarListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.memory_card_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.car_layout, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -38,15 +38,13 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Car car = cars.get(position);
-        holder.textViewTitleCar.setText(car.getTitle());
-
+        holder.textViewTitleCar.setText(car.getName());
     }
 
     @Override
     public int getItemCount() {
         return cars.size();
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

@@ -18,46 +18,57 @@ import java.util.List;
 
 public class CarList extends AppCompatActivity implements CarListAdapter.OnDataSelected {
 
-
-
     private List<Car> cars = new ArrayList<Car>();
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter; //RecyclerView.Adapter
-    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter;
+    private LinearLayoutManager linearLayoutManager;
+    private GridLayoutManager gridLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         createFakeCars();
 
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
 
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        gridLayoutManager = new GridLayoutManager(this,2);
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        adapter = new CarListAdapter(this,this,cars);
+        recyclerView.setAdapter(adapter);
+
+
+        findViewById(R.id.button_new_car).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 recyclerView.scrollToPosition(0);
                 Car newCar = new Car("New car" + new Date().toString(), "Description");
-                cars.add(0,newCar);
+                cars.add(0, newCar);
                 adapter.notifyItemInserted(0);
             }
 
         });
 
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        recyclerView.setHasFixedSize(true);
+        findViewById(R.id.button_change_layout).setOnClickListener(new View.OnClickListener() {
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            @Override
+            public void onClick(View v) {
+                if(recyclerView.getLayoutManager() instanceof  GridLayoutManager) {
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                } else {
+                    recyclerView.setLayoutManager(gridLayoutManager);
+                }
+            }
+        });
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
-
-        layoutManager = linearLayoutManager;
-        recyclerView.setLayoutManager(gridLayoutManager);
-
-
-        adapter = new CarListAdapter(this,this,cars);
-        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -68,14 +79,12 @@ public class CarList extends AppCompatActivity implements CarListAdapter.OnDataS
         adapter.notifyItemRemoved(position);
     }
 
-
     private void createFakeCars() {
-        for(int i =0; i < 10; i ++) {
+        for(int i = 0; i < 10; i ++) {
             Car sampleCar = new Car();
-            sampleCar.setTitle("Car " + 1);
-            sampleCar.setDescription("Description: " + 1);
+            sampleCar.setName("Car " + i);
+            sampleCar.setDescription("Description: " + i);
             cars.add(sampleCar);
         }
-
     }
 }

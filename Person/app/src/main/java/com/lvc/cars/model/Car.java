@@ -5,41 +5,24 @@ package com.lvc.cars.model;
  */
 public class Car {
 
-    private int id;
-    private int type;
-    private String title;
+
+    private String name;
     private String description;
 
     public Car() {
     }
 
-    public Car(String title, String description) {
-        this.title = title;
+    public Car(String name, String description) {
+        this.name = name;
         this.description = description;
     }
 
-    public int getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -50,9 +33,8 @@ public class Car {
         this.description = description;
     }
 
-
     @Override
     public String toString() {
-        return title + " " + description;
+        return name + " " + description;
     }
 }
