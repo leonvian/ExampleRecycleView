@@ -44,7 +44,6 @@ public class CarList extends AppCompatActivity implements CarListAdapter.OnDataS
         adapter = new CarListAdapter(this,this,cars);
         recyclerView.setAdapter(adapter);
 
-
         findViewById(R.id.button_new_car).setOnClickListener(new View.OnClickListener() {
 
             @Override

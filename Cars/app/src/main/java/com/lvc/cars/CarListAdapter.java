@@ -12,9 +12,7 @@ import com.lvc.memories.R;
 
 import java.util.List;
 
-/**
- * Created by administrator on 7/27/15.
- */
+
 public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHolder> {
 
     private List<Car> cars;
@@ -46,6 +44,12 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
         return cars.size();
     }
 
+     public static interface OnDataSelected {
+
+         public void onDataSelected(View view, int position);
+
+     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView textViewTitleCar;
@@ -68,10 +72,4 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.ViewHold
             onDataSelected.onDataSelected(view, position);
         }
     }
-
-     public static interface OnDataSelected {
-
-         public void onDataSelected(View view, int position);
-
-     }
 }

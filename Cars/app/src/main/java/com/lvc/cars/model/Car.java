@@ -1,10 +1,7 @@
 package com.lvc.cars.model;
 
-/**
- * Created by administrator on 7/27/15.
- */
-public class Car {
 
+public class Car {
 
     private String name;
     private String description;
