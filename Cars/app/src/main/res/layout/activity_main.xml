@@ -24,12 +24,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
             android:text="Change Layout" />
 
         <Button
             android:id="@+id/button_new_car"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
             android:layout_weight="1"
             android:text="New Car" />
 
